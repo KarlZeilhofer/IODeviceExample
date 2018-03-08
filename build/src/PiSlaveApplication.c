@@ -227,6 +227,9 @@ INT16U PiSlaveAppGetModuleType()
     case 2:  // 16 Inputs
         i16uModulType_l = KUNBUS_FW_DESCR_TYP_PI_DI_16;
         break;
+	case 3: // unpopulated config resistors (as on the Makerboard V18.0.0)
+		i16uModulType_l = KUNBUS_FW_DESCR_TYP_PI_DIO_14; // TODO 2: define a new firmware descriptor
+		break;
     }
     return i16uModulType_l;
 }
@@ -345,11 +348,13 @@ void PiSlaveAppRun()
 {
     PiSlaveAppStart();
 
-    if (bHandleIO_s)
-    {
-        bHandleIO_s = bFALSE;
-        handleIO();
-    }
+//	LED_setLed(PIDIO_LED_OUTPUT_STATUS, LED_ST_GREEN_BLINK_150);
+
+//    if (bHandleIO_s)
+//    {
+//        bHandleIO_s = bFALSE;
+//        handleIO();
+//    }
 }
 
 

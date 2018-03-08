@@ -128,3 +128,8 @@ clean:
 	 $(DEL) *.lss
 	 $(DEL) *.map
 
+# run this command from a terminal.
+# by default it will halt at main()
+# to continue, enter 'c' and return into the gdb prompt.
+flash:
+	$(TOOLCHAIN_PATH)/arm-none-eabi-gdb $(MAIN_OUT_ELF)

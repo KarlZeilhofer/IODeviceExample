@@ -38,6 +38,8 @@
 #include <bsp/flash/FlashDriver.h>
 #include <bsp/bspError.h>
 
+#define START_OF_PHYSICAL_FLASH 0x08000000U // TODO 2 find a better place for its definition
+
 //*************************************************************************************************
 //| Function: BSP_FLASH_eraseBlock
 //|
@@ -59,77 +61,77 @@ void BSP_FLASH_eraseBlock (
     TBOOL bErased;
     INT32U sector;
 
-    if ((INT32U)vpAddr_p <= 0x00003fff)
+	if ((INT32U)vpAddr_p <= (START_OF_PHYSICAL_FLASH + 0x00003fff))
     {
         sector = FLASH_Sector_0;
-        pI32UStart = (INT32U *)0x00000000;
-        pI32UEnd = (INT32U *)0x00003fff;
+		pI32UStart = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x00000000);
+		pI32UEnd = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x00003fff);
     }
-    else if ((INT32U)vpAddr_p <= 0x00007fff)
+	else if ((INT32U)vpAddr_p <= (START_OF_PHYSICAL_FLASH + 0x00007fff))
     {
         sector = FLASH_Sector_1;
-        pI32UStart = (INT32U *)0x00004000;
-        pI32UEnd = (INT32U *)0x00007fff;
+		pI32UStart = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x00004000);
+		pI32UEnd = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x00007fff);
     }
-    else if ((INT32U)vpAddr_p <= 0x0000bfff)
+	else if ((INT32U)vpAddr_p <= (START_OF_PHYSICAL_FLASH + 0x0000bfff))
     {
         sector = FLASH_Sector_2;
-        pI32UStart = (INT32U *)0x00008000;
-        pI32UEnd = (INT32U *)0x0000bfff;
+		pI32UStart = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x00008000);
+		pI32UEnd = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x0000bfff);
     }
-    else if ((INT32U)vpAddr_p <= 0x0000ffff)
+	else if ((INT32U)vpAddr_p <= (START_OF_PHYSICAL_FLASH + 0x0000ffff))
     {
         sector = FLASH_Sector_3;
-        pI32UStart = (INT32U *)0x0000b000;
-        pI32UEnd = (INT32U *)0x0000ffff;
+		pI32UStart = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x0000b000);
+		pI32UEnd = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x0000ffff);
     }
-    else if ((INT32U)vpAddr_p <= 0x0001ffff)
+	else if ((INT32U)vpAddr_p <= (START_OF_PHYSICAL_FLASH + 0x0001ffff))
     {
         sector = FLASH_Sector_4;
-        pI32UStart = (INT32U *)0x00010000;
-        pI32UEnd = (INT32U *)0x0001ffff;
+		pI32UStart = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x00010000);
+		pI32UEnd = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x0001ffff);
     }
-    else if ((INT32U)vpAddr_p <= 0x0003ffff)
+	else if ((INT32U)vpAddr_p <= (START_OF_PHYSICAL_FLASH + 0x0003ffff))
     {
         sector = FLASH_Sector_5;
-        pI32UStart = (INT32U *)0x00020000;
-        pI32UEnd = (INT32U *)0x0003ffff;
+		pI32UStart = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x00020000);
+		pI32UEnd = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x0003ffff);
     }
-    else if ((INT32U)vpAddr_p <= 0x0005ffff)
+	else if ((INT32U)vpAddr_p <= (START_OF_PHYSICAL_FLASH + 0x0005ffff))
     {
         sector = FLASH_Sector_6;
-        pI32UStart = (INT32U *)0x00040000;
-        pI32UEnd = (INT32U *)0x0005ffff;
+		pI32UStart = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x00040000);
+		pI32UEnd = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x0005ffff);
     }
-    else if ((INT32U)vpAddr_p <= 0x0007ffff)
+	else if ((INT32U)vpAddr_p <= (START_OF_PHYSICAL_FLASH + 0x0007ffff))
     {
         sector = FLASH_Sector_7;
-        pI32UStart = (INT32U *)0x00060000;
-        pI32UEnd = (INT32U *)0x0007ffff;
+		pI32UStart = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x00060000);
+		pI32UEnd = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x0007ffff);
     }
-    else if ((INT32U)vpAddr_p <= 0x0009ffff)
+	else if ((INT32U)vpAddr_p <= (START_OF_PHYSICAL_FLASH + 0x0009ffff))
     {
         sector = FLASH_Sector_8;
-        pI32UStart = (INT32U *)0x00080000;
-        pI32UEnd = (INT32U *)0x0009ffff;
+		pI32UStart = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x00080000);
+		pI32UEnd = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x0009ffff);
     }
-    else if ((INT32U)vpAddr_p <= 0x000bffff)
+	else if ((INT32U)vpAddr_p <= (START_OF_PHYSICAL_FLASH + 0x000bffff))
     {
         sector = FLASH_Sector_9;
-        pI32UStart = (INT32U *)0x000a0000;
-        pI32UEnd = (INT32U *)0x000bffff;
+		pI32UStart = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x000a0000);
+		pI32UEnd = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x000bffff);
     }
-    else if ((INT32U)vpAddr_p <= 0x000dffff)
+	else if ((INT32U)vpAddr_p <= (START_OF_PHYSICAL_FLASH + 0x000dffff))
     {
         sector = FLASH_Sector_10;
-        pI32UStart = (INT32U *)0x000c0000;
-        pI32UEnd = (INT32U *)0x000dffff;
+		pI32UStart = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x000c0000);
+		pI32UEnd = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x000dffff);
     }
-    else if ((INT32U)vpAddr_p <= 0x000fffff)
+	else if ((INT32U)vpAddr_p <= (START_OF_PHYSICAL_FLASH + 0x000fffff))
     {
         sector = FLASH_Sector_11;
-        pI32UStart = (INT32U *)0x000e0000;
-        pI32UEnd = (INT32U *)0x000fffff;
+		pI32UStart = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x000e0000);
+		pI32UEnd = (INT32U *)(START_OF_PHYSICAL_FLASH + 0x000fffff);
     }
     else
     {
@@ -207,9 +209,9 @@ void BSP_FLASH_eraseRange (
     {
         BSP_FLASH_eraseBlock (pi8uStart_l);
 
-        if ((INT32U)pi8uStart_l <= 0x0000ffff)
+		if ((INT32U)pi8uStart_l <= (START_OF_PHYSICAL_FLASH + 0x0000ffff))
             pi8uStart_l += 0x00004000;	// 16 KByte 
-        else if ((INT32U)pi8uStart_l < 0x0001ffff)
+		else if ((INT32U)pi8uStart_l < (START_OF_PHYSICAL_FLASH + 0x0001ffff))
             pi8uStart_l += 0x00010000;	// 64 KByte
         else
             pi8uStart_l += 0x00020000;	// 128 KByte
