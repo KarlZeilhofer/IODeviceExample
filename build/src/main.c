@@ -38,6 +38,7 @@
 #include <bsp/bspInit.h>
 #include "PiBridgeSlave.h"
 #include <platformError.h>
+#include <bsp/led/Led.h>
 
 //+=============================================================================================
 //|		Globale Variablen / global variables
@@ -74,9 +75,15 @@ int main (void)
 
         PiBridgeSlaveInit(&tJumpBuf_s, applErrHandler);
 
-        for (;;)
+
+
+//		LED_setLed(PIDIO_LED_INPUT_STATUS, LED_ST_GREEN_BLINK_500);
+//		LED_setLed(PIDIO_LED_POWER, LED_ST_GREEN_BLINK_250);
+
+		while(1)
         {
-            PiBridgeSlaveRun();
+			PiBridgeSlaveRun();
+
         }
     }
     else

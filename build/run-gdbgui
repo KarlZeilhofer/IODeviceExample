@@ -1,0 +1,14 @@
+#! /bin/bash
+
+# This shell script starts gdbgui, which provides a graphical user interface for the
+# GNU debugger via a local webserver. Please visit https://gdbgui.com/
+
+# define your binary, which you want to debug:
+BINARY=PiDio.elf
+
+# define your GDB
+GDB=/home/karl/programs/gcc-arm-none-eabi-7-2017-q4-major/bin/arm-none-eabi-gdb
+
+gdbgui --gdb $GDB $BINARY
+
+

@@ -22,15 +22,17 @@ _Minimum_Stack_Size = 0x100 ;
 /* Memory Spaces Definitions */
 MEMORY
 {
-	ISR_VEC (rx)	: ORIGIN = 0x00000000, LENGTH = 16K     		/* must start at address 0, contains initial vector table */
+	ISR_VEC (rx)	: ORIGIN = 0x08000000, LENGTH = 16K     		/* must start at address 0, contains initial vector table */
+		/* NOTE: if changed, please also change START_OF_PHYSICAL_FLASH in FlashDriver.c */
 
 	/*0x00008000 - 0x0000FFFF, 32k*/
-	EEPROM_SIMU (r)	: ORIGIN = 0x00008000, LENGTH = 32K				/* Needs to be as long as 2 flash pages and mapped to flash page boundaries */
-	SCRIPT (r)		: ORIGIN = 0x00010000, LENGTH = 64K
-	FLASH (rx)		: ORIGIN = 0x00020000, LENGTH = (512K - 128K)
+	EEPROM_SIMU (r)	: ORIGIN = 0x08008000, LENGTH = 32K				/* Needs to be as long as 2 flash pages and mapped to flash page boundaries */
+	SCRIPT (r)		: ORIGIN = 0x08010000, LENGTH = 64K
+	FLASH (rx)		: ORIGIN = 0x08020000, LENGTH = (512K - 128K)
 	OPTION_BYTES (r): ORIGIN = 0x1FFFF800, LENGTH = 16
 	RAM (xrw)		: ORIGIN = 0x20000000, LENGTH = 128K  /* also change _estack below */
 }
+
 
 laStartRamTest_g = ORIGIN(RAM);
 laEndRamTest_g = ORIGIN(RAM) + LENGTH(RAM) - 1; 

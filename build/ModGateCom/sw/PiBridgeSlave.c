@@ -120,7 +120,7 @@ void PiBridgeSlaveRun()
         // *****************************************************************************************
 
 
-    case PIBRIDGESLAVE_ST_CONFIG_INIT:
+	case PIBRIDGESLAVE_ST_CONFIG_INIT: // entered on rising edge of Sniff2
         if (bEntering_s)
         {
             eState_s = PISLAVEAPPLICATION_STATE_INIT;
@@ -186,7 +186,7 @@ void PiBridgeSlaveRun()
     case PIBRIDGESLAVE_ST_WAIT_FOR_CONFIG:
         if (bEntering_s)
         {
-            // wait 10 ms before pin 2 is set high
+			// wait 10 ms before Sniff2 is set high
             bEntering_s = bFALSE;
             kbUT_TimerStart(&tTimeoutTimer_s, MASTER_PRESENT_TIME);
             i8uSniff1bState_s = PIBS_ReadSniff1B();
@@ -207,7 +207,9 @@ void PiBridgeSlaveRun()
         }
         if (PIBS_ReadSniff1A() == 0)
         {
-            // 1a changed from 1 to 0 --> right module
+			// Module to the left pulled Sniff1b low
+			// (see PIBRIDGESLAVE_ST_WAIT_FOR_END_CONFIG_RIGHT)
+			// --> 1a changed from 1 to 0 --> right module
             eRunStatus_s = PIBRIDGESLAVE_ST_CONFIG_MODULE_RIGHT_N;
             bEntering_s = bTRUE;
             bConfigurationComplete_g = bFALSE;
