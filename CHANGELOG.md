@@ -12,6 +12,7 @@ Changelog for the Revolution Pi - DIO Example Firmware
 * configure as DIO-14, if no config-resistors are placed
 * updated README.md
 * skip the SPI io handling, since they are not available on the Makerboard
+* change commit message
 
 
 ## 2018-02-06
